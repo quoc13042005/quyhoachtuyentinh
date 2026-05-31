@@ -49,7 +49,7 @@ def dual_simplex_min(A, b, c):
                 ratio = obj_row[j] / row_k[j]
                 candidates.append((ratio, j))
         if not candidates:
-            raise ValueError("LP infeasible (Dual phase).")
+            return "infeasible", None
 
         _, entering_idx = min(candidates, key=lambda x: x[0])
 
@@ -83,7 +83,7 @@ def dual_simplex_min(A, b, c):
                 ratios[i] = tbl[i, -1] / a_ij
         leaving_idx = int(np.argmin(ratios))
         if ratios[leaving_idx] == np.inf:
-            raise ValueError("LP unbounded (Primal phase).")
+            return "unbounded", None
 
         entering_var = var_names[entering_idx]
         leaving_var = basis[leaving_idx]

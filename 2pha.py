@@ -75,7 +75,7 @@ def two_phase_simplex_min(A, b, c):
                     
             leaving_idx = int(np.argmin(ratios))
             if ratios[leaving_idx] == np.inf:
-                return None, None # Không giới hạn (không thể xảy ra trong Pha 1)
+                return "unbounded", None # Không giới hạn (không thể xảy ra trong Pha 1)
                 
             entering_var = var_names[entering_idx]
             leaving_var = basis[leaving_idx]
@@ -93,7 +93,7 @@ def two_phase_simplex_min(A, b, c):
             
         # Kiểm tra tính khả thi
         if abs(tableau[m, -1]) > 1e-9:
-            return None, None # Vô nghiệm
+            return "infeasible", None # Vô nghiệm
             
         # Nếu x0 vẫn nằm trong cơ sở (với giá trị 0), đẩy nó ra
         if "x0" in basis:
@@ -153,7 +153,7 @@ def two_phase_simplex_min(A, b, c):
                 
         leaving_idx = int(np.argmin(ratios))
         if ratios[leaving_idx] == np.inf:
-            return None, None # Không giới hạn
+            return "unbounded", None # Không giới hạn
             
         entering_var = var_names[entering_idx]
         leaving_var = basis[leaving_idx]

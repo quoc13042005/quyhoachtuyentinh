@@ -126,6 +126,13 @@ async function solveLP() {
                 <strong>Giá trị Z tối ưu:</strong> ${res.objective.toFixed(6)}<br>
                 <strong>Nghiệm:</strong> ${xStr}
             `;
+        } else if (res.status === 'unbounded') {
+            let limitStr = (problemType === 1) ? 'Max Z = +&infin;' : 'Min Z = -&infin;';
+            summaryDiv.className = 'result-summary error';
+            summaryDiv.innerHTML = `<strong>Trạng thái:</strong> Bài toán không giới nội.<br><strong>Kết luận:</strong> ${limitStr}`;
+        } else if (res.status === 'infeasible') {
+            summaryDiv.className = 'result-summary error';
+            summaryDiv.innerHTML = `<strong>Trạng thái:</strong> Bài toán vô nghiệm (Không có phương án khả thi).`;
         } else {
             summaryDiv.className = 'result-summary error';
             summaryDiv.innerHTML = `<strong>Trạng thái:</strong> Không có nghiệm tối ưu hữu hạn (${res.status})`;

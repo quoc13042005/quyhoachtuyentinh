@@ -50,7 +50,7 @@ def two_phase_dual_original_min(A, b, c):
                 ratio = obj_row[j] / row_k[j]
                 candidates.append((ratio, j))
         if not candidates:
-            raise ValueError("Auxiliary LP is infeasible.")
+            return "infeasible", None
 
         _, entering_idx = min(candidates, key=lambda x: x[0])
 
@@ -68,19 +68,19 @@ def two_phase_dual_original_min(A, b, c):
         basis[leaving_idx] = entering_var
         return entering_var, leaving_var, False
 
-    try:
-        while True:
-            entering, leaving, done = dual_pivot(tableau, basis)
-            if done:
-                record_step(tableau, basis)
-                break
+    while True:
+        res = dual_pivot(tableau, basis)
+        if len(res) == 2:
+            return res[0], res[1]
+        entering, leaving, done = res
+        if done:
             record_step(tableau, basis)
-    except ValueError:
-        return None, None
+            break
+        record_step(tableau, basis)
 
     w_val = tableau[-1, -1]
     if w_val > 1e-8:
-        return None, None
+        return "infeasible", None
 
     tableau[-1, :] = 0.0
     for j in range(n):
@@ -111,7 +111,7 @@ def two_phase_dual_original_min(A, b, c):
                 ratios[i] = tbl[i, -1] / a_ij
         leaving_idx = int(np.argmin(ratios))
         if ratios[leaving_idx] == np.inf:
-            raise ValueError("Original LP is unbounded.")
+            return "unbounded", None
 
         entering_var = var_names[entering_idx]
         leaving_var = basis[leaving_idx]
@@ -127,15 +127,15 @@ def two_phase_dual_original_min(A, b, c):
         basis[leaving_idx] = entering_var
         return entering_var, leaving_var, False
 
-    try:
-        while True:
-            entering, leaving, done = primal_pivot(tableau, basis)
-            if done:
-                record_step(tableau, basis)
-                break
+    while True:
+        res = primal_pivot(tableau, basis)
+        if len(res) == 2:
+            return res[0], res[1]
+        entering, leaving, done = res
+        if done:
             record_step(tableau, basis)
-    except ValueError:
-        return None, None
+            break
+        record_step(tableau, basis)
 
     x_vals = np.zeros(total_vars)
     for i in range(m):

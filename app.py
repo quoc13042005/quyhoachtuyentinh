@@ -98,7 +98,9 @@ def solve():
                 else:
                     return jsonify({"error": "Phương pháp không hợp lệ."})
                     
-                if sol is None:
+                if isinstance(sol, str):
+                    result = {"status": sol}
+                elif sol is None:
                     result = {"status": "unbounded or infeasible"}
                 else:
                     total_tr_vars = len(c_tr)
