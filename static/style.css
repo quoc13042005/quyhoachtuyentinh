@@ -1,0 +1,383 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #10b981;
+    --success-hover: #059669;
+    --danger: #ef4444;
+    --input-bg: rgba(15, 23, 42, 0.6);
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    background: -webkit-linear-gradient(#60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+h2,
+h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+input[type="number"],
+select {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-family);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--primary);
+}
+
+button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--success-hover);
+}
+
+.coefficient-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.coefficient-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.coefficient-item input {
+    width: 60px;
+}
+
+.constraints-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.constraint-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.constraint-row input.rhs {
+    width: 80px;
+}
+
+.method-section {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.result-summary {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid var(--success);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.result-summary.error {
+    background: rgba(239, 68, 68, 0.1);
+    border-left-color: var(--danger);
+}
+
+pre#output-log {
+    background: #020617;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+    color: #38bdf8;
+    border: 1px solid var(--border-color);
+}
+
+.chart-wrapper {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Spinner */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dictionary UI */
+.dictionary-container {
+    background: rgba(15, 23, 42, 0.4);
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Cambria', 'Times New Roman', serif;
+    font-size: 1.25rem;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+
+.dict-step {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.dict-step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.dict-title {
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.dict-table {
+    border-collapse: collapse;
+    margin-left: 0.5rem;
+}
+
+    .dict-table td {
+        padding: 0.3rem 0;
+        vertical-align: middle;
+    }
+
+    .dict-obj-row td {
+        border-bottom: 2px solid var(--text-color);
+        padding-bottom: 0.75rem;
+    }
+
+    .dict-table tr:not(.dict-obj-row):first-of-type td {
+        padding-top: 0.75rem;
+    }
+
+    .td-arrow-left {
+        color: var(--danger);
+        font-weight: bold;
+        font-size: 1.4rem;
+        width: 30px;
+        text-align: right;
+        padding-right: 0.5rem;
+    }
+
+    .td-lhs {
+        width: 40px;
+        text-align: right;
+        padding-right: 0.5rem;
+    }
+
+    .td-equals {
+        padding-right: 0.5rem;
+    }
+
+    .td-rhs-const {
+        text-align: right;
+        padding-right: 1rem;
+        min-width: 40px;
+    }
+
+    .td-term {
+        padding-right: 1rem;
+        min-width: 60px;
+        text-align: center;
+    }
+
+    .term-content {
+        position: relative;
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: center;
+    }
+
+    .circled-term {
+        border: 2px solid var(--danger);
+        border-radius: 50%;
+        padding: 0.1rem 0.4rem;
+    }
+
+    .term-sign {
+        margin-right: 0.3rem;
+    }
+
+    .term-coef {
+        margin-right: 0.1rem;
+    }
+
+    .term-var {
+        line-height: 1;
+    }
+
+    .dict-arrow-down {
+        color: var(--success);
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        top: -1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .fraction {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        vertical-align: middle;
+        margin: 0 0.1rem;
+        font-size: 0.9em;
+        line-height: 1.2;
+    }
+
+    .fraction .num {
+        border-bottom: 1px solid var(--text-color);
+        padding: 0 0.2rem;
+    }
+
+    .fraction .den {
+        padding: 0 0.2rem;
+    }
