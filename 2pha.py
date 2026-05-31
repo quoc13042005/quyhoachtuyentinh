@@ -35,8 +35,8 @@ def two_phase_simplex_min(A, b, c):
     needs_phase1 = np.any(b < -1e-9)
     
     if needs_phase1:
-        # Mục tiêu Pha 1: epsilon = -x0 (maximize) -> trong dictionary coeff của x0 là -1
-        tableau[m, total_vars-1] = -1.0
+        # Mục tiêu Pha 1: epsilon = x0 (minimize) -> trong dictionary coeff của x0 là 1
+        tableau[m, total_vars-1] = 1.0
         tableau[m, -1] = 0.0
         
         record_step(tableau, basis, "&epsilon;")
@@ -60,12 +60,12 @@ def two_phase_simplex_min(A, b, c):
         basis[leaving_idx] = entering_var
         record_step(tableau, basis, "&epsilon;")
         
-        # Vòng lặp Pha 1 (Maximize epsilon)
+        # Vòng lặp Pha 1 (Minimize epsilon)
         while True:
-            # Chọn biến vào có hệ số dương lớn nhất (để Maximize epsilon)
+            # Chọn biến vào có hệ số âm lớn nhất (để Minimize epsilon)
             obj_row = tableau[m, :-1]
-            entering_idx = int(np.argmax(obj_row))
-            if obj_row[entering_idx] <= 1e-9:
+            entering_idx = int(np.argmin(obj_row))
+            if obj_row[entering_idx] >= -1e-9:
                 break # Tối ưu Pha 1
                 
             ratios = np.full(m, np.inf)
