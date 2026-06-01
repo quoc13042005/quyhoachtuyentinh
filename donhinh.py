@@ -10,21 +10,8 @@ global_steps = []
 
 
 def transform_problem(problem_type, num_vars, num_constraints, c, t, i_vec, mt, b):
-    """
-    Chuyển bài toán quy hoạch tuyến tính tổng quát về dạng chuẩn cho Simplex.
+    
 
-    Quy ước:
-    - problem_type = 1  : Max
-    - problem_type = -1 : Min
-
-    - t[r] = -1 : <=
-    - t[r] = 1  : >=
-    - t[r] = 0  : =
-
-    - i_vec[j] = 1  : x_j >= 0
-    - i_vec[j] = -1 : x_j <= 0
-    - i_vec[j] = 0  : x_j tự do
-    """
 
     old_problem_type = problem_type
     old_t = t.copy()
