@@ -16,7 +16,7 @@ Giao diện trực quan, hiển thị các bước giải bằng bảng Từ v�
 
 **1. Clone kho lưu trữ về máy**
 ```bash
-git clone https://github.com/TungTKB/quyhoachtuyentinh.git
+git clone https://github.com/quoc13042005/quyhoachtuyentinh.git
 cd quyhoachtuyentinh
 ```
 
