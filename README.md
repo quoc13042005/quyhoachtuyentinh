@@ -1,5 +1,7 @@
 # Web Quy Hoạch Tuyến Tính (Linear Programming Solver)
 
+🚀 **Truy cập ứng dụng trực tuyến tại đây:** [https://quyhoachtuyentinh-fvpi.onrender.com/](https://quyhoachtuyentinh-fvpi.onrender.com/)
+
 Đây là ứng dụng web giải các bài toán Quy Hoạch Tuyến Tính bằng các thuật toán:
 - Đơn hình (Simplex)
 - Quy tắc Bland (Bland's Rule)
