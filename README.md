@@ -16,8 +16,8 @@ Giao diện trực quan, hiển thị các bước giải bằng bảng Từ v�
 
 **1. Clone kho lưu trữ về máy**
 ```bash
-git clone https://github.com/your-username/code_qhtt.git
-cd code_qhtt
+git clone https://github.com/TungTKB/quyhoachtuyentinh.git
+cd quyhoachtuyentinh
 ```
 
 **2. Tạo và kích hoạt môi trường ảo (Khuyến nghị)**
